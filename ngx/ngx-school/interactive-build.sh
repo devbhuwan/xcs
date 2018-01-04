@@ -30,7 +30,6 @@ do
         "Install Developer Dependencies")
             echo "you chose 'Run Test'"
             yarn add --dev jest jest-preset-angular @types/jest mocha karma-mocha-reporter karma-phantomjs-launcher electron karma-electron-launcher  ng-packagr cpr ts-mockito
-             yarn add -dev
             ;;
         "Quit")
             break
