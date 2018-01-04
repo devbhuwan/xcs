@@ -1,4 +1,4 @@
-package xcs.uaa.security;
+package uaa.keycloak.security;
 
 import lombok.Getter;
 import lombok.Setter;

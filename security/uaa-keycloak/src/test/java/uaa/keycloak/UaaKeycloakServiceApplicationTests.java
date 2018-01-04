@@ -1,4 +1,4 @@
-package xcs.uaa;
+package uaa.keycloak;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,8 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = XcsUaaServiceApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class XcsUaaServiceApplicationTests {
+@SpringBootTest(classes = UaaKeycloakServiceApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class UaaKeycloakServiceApplicationTests {
 
     @LocalServerPort
     protected int port;

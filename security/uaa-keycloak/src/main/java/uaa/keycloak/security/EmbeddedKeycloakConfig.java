@@ -1,4 +1,4 @@
-package xcs.uaa.security;
+package uaa.keycloak.security;
 
 import org.apache.commons.lang.StringUtils;
 import org.jboss.resteasy.plugins.server.servlet.HttpServlet30Dispatcher;

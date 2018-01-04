@@ -1,4 +1,4 @@
-package xcs.uaa.security;
+package uaa.keycloak.security;
 
 
 import org.jboss.resteasy.core.Dispatcher;

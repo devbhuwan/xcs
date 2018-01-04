@@ -1,4 +1,4 @@
-package xcs.uaa;
+package uaa.keycloak;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import org.keycloak.authorization.client.resource.ProtectedResource;
 import java.util.HashMap;
 import java.util.Set;
 
-public class XcsUaaServiceApplicationAuthzClientTests extends XcsUaaServiceApplicationTests {
+public class UaaKeycloakServiceApplicationAuthzClientTests extends UaaKeycloakServiceApplicationTests {
 
     @Test
     public void createResource() {

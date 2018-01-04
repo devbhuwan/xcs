@@ -1,4 +1,4 @@
-package xcs.uaa;
+package uaa.keycloak;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,14 +8,14 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
-import xcs.uaa.security.KeycloakServerProperties;
+import uaa.keycloak.security.KeycloakServerProperties;
 
 @SpringBootApplication(exclude = LiquibaseAutoConfiguration.class)
 @EnableConfigurationProperties(KeycloakServerProperties.class)
-public class XcsUaaServiceApplication {
+public class UaaKeycloakServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(XcsUaaServiceApplication.class, args);
+        SpringApplication.run(UaaKeycloakServiceApplication.class, args);
     }
 
     @Bean
