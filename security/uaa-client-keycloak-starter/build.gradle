@@ -2,4 +2,5 @@ dependencies {
     compile("org.keycloak:keycloak-spring-boot-starter:${keycloakVersion}")
     testCompile("org.springframework.boot:spring-boot-starter-test")
     apt("org.springframework.boot:spring-boot-configuration-processor")
+    testCompile project(":uaa-keycloak")
 }

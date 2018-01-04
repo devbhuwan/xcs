@@ -1,4 +1,5 @@
 rootProject.name = 'security'
 include 'uaa-keycloak'
 include 'uaa-client-keycloak-starter'
+include 'uaa-client-model'
 
