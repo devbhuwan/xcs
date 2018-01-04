@@ -1,0 +1,3 @@
+configure(project) {
+    apply from: "$projectDir/gradle/cloud/buildscript.gradle"
+}

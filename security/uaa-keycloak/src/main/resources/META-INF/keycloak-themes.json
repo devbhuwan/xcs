@@ -1,0 +1,13 @@
+{
+  "themes": [
+    {
+      "name": "x-cloud-school",
+      "types": [
+        "login",
+        "welcome",
+        "admin",
+        "account"
+      ]
+    }
+  ]
+}
