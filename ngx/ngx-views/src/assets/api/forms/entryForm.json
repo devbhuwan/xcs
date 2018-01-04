@@ -1,0 +1,279 @@
+{
+  "_id": "5a3e42f3ccc08c0009b8e1d8",
+  "machineName": "entryForm",
+  "modified": "2017-12-23T12:15:28.759Z",
+  "display": "form",
+  "title": "Entry Form",
+  "name": "entryForm",
+  "path": "entryform",
+  "created": "2017-12-23T11:50:11.298Z",
+  "components": [
+    {
+      "lockKey": true,
+      "properties": {
+        "": ""
+      },
+      "tags": [],
+      "labelPosition": "top",
+      "hideLabel": false,
+      "type": "textfield",
+      "conditional": {
+        "eq": "",
+        "when": null,
+        "show": ""
+      },
+      "validate": {
+        "customPrivate": false,
+        "custom": "",
+        "pattern": "",
+        "maxLength": "",
+        "minLength": "",
+        "required": false
+      },
+      "clearOnHide": true,
+      "hidden": false,
+      "persistent": true,
+      "unique": false,
+      "protected": false,
+      "defaultValue": "",
+      "multiple": false,
+      "suffix": "",
+      "prefix": "",
+      "placeholder": "",
+      "key": "firstName",
+      "label": "First Name",
+      "inputMask": "",
+      "inputType": "text",
+      "tableView": true,
+      "input": true
+    },
+    {
+      "properties": {
+        "": ""
+      },
+      "tags": [],
+      "labelPosition": "top",
+      "hideLabel": false,
+      "type": "textfield",
+      "conditional": {
+        "eq": "",
+        "when": null,
+        "show": ""
+      },
+      "validate": {
+        "customPrivate": false,
+        "custom": "",
+        "pattern": "",
+        "maxLength": "",
+        "minLength": "",
+        "required": false
+      },
+      "clearOnHide": true,
+      "hidden": false,
+      "persistent": true,
+      "unique": false,
+      "protected": false,
+      "defaultValue": "",
+      "multiple": false,
+      "suffix": "",
+      "prefix": "",
+      "placeholder": "",
+      "key": "lastName",
+      "label": "LastName",
+      "inputMask": "",
+      "inputType": "text",
+      "tableView": true,
+      "input": true
+    },
+    {
+      "properties": {
+        "": ""
+      },
+      "conditional": {
+        "eq": "",
+        "when": null,
+        "show": ""
+      },
+      "tags": [],
+      "labelPosition": "top",
+      "hideLabel": false,
+      "type": "phoneNumber",
+      "validate": {
+        "required": false
+      },
+      "clearOnHide": true,
+      "defaultValue": "",
+      "hidden": false,
+      "persistent": true,
+      "unique": false,
+      "protected": false,
+      "multiple": false,
+      "suffix": "",
+      "prefix": "",
+      "placeholder": "",
+      "key": "phoneNumber",
+      "label": "Phone Number",
+      "inputMask": "(999) 999-9999",
+      "inputType": "tel",
+      "tableView": true,
+      "input": true
+    },
+    {
+      "properties": {
+        "": ""
+      },
+      "conditional": {
+        "eq": "",
+        "when": null,
+        "show": ""
+      },
+      "tags": [],
+      "labelPosition": "top",
+      "hideLabel": false,
+      "type": "select",
+      "validate": {
+        "required": false
+      },
+      "clearOnHide": true,
+      "hidden": false,
+      "persistent": true,
+      "unique": false,
+      "protected": false,
+      "multiple": false,
+      "template": "<span>{{ item.label }}</span>",
+      "authenticate": false,
+      "filter": "",
+      "refreshOn": "",
+      "defaultValue": "",
+      "valueProperty": "",
+      "dataSrc": "url",
+      "data": {
+        "headers": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ],
+        "custom": "",
+        "resource": "",
+        "url": "/assets/api/lookups/countries.json",
+        "json": "",
+        "values": [
+        ]
+      },
+      "placeholder": "",
+      "key": "country",
+      "label": "Country",
+      "tableView": true,
+      "input": true
+    },
+    {
+      "properties": {
+        "": ""
+      },
+      "conditional": {
+        "eq": "",
+        "when": null,
+        "show": ""
+      },
+      "tags": [],
+      "labelPosition": "top",
+      "hideLabel": false,
+      "type": "datetime",
+      "validate": {
+        "custom": "",
+        "required": false
+      },
+      "clearOnHide": true,
+      "hidden": false,
+      "persistent": true,
+      "protected": false,
+      "timePicker": {
+        "arrowkeys": true,
+        "mousewheel": true,
+        "readonlyInput": false,
+        "showMeridian": false,
+        "minuteStep": 1,
+        "hourStep": 1
+      },
+      "datePicker": {
+        "datepickerMode": "day",
+        "maxDate": null,
+        "minDate": null,
+        "yearColumns": 5,
+        "yearRows": 4,
+        "maxMode": "year",
+        "minMode": "day",
+        "initDate": "",
+        "startingDay": 0,
+        "showWeeks": true
+      },
+      "datepickerMode": "day",
+      "defaultDate": "",
+      "enableTime": false,
+      "enableDate": true,
+      "format": "yyyy-MM-dd",
+      "placeholder": "",
+      "key": "dateOfBirth",
+      "label": "Date Of Birth",
+      "tableView": true,
+      "input": true
+    },
+    {
+      "hideLabel": false,
+      "type": "button",
+      "theme": "primary",
+      "disableOnInvalid": false,
+      "action": "submit",
+      "block": false,
+      "rightIcon": "",
+      "leftIcon": "",
+      "size": "md",
+      "key": "submit",
+      "tableView": false,
+      "label": "Submit",
+      "input": true
+    }
+  ],
+  "owner": "5a3e4269ccc08c0009b8e1d7",
+  "submissionAccess": [
+    {
+      "type": "create_own",
+      "roles": [
+        "5a3e4269ccc08c0009b8e1ca"
+      ]
+    },
+    {
+      "type": "read_own",
+      "roles": [
+        "5a3e4269ccc08c0009b8e1ca"
+      ]
+    },
+    {
+      "type": "update_own",
+      "roles": [
+        "5a3e4269ccc08c0009b8e1ca"
+      ]
+    },
+    {
+      "type": "delete_own",
+      "roles": [
+        "5a3e4269ccc08c0009b8e1ca"
+      ]
+    }
+  ],
+  "access": [
+    {
+      "type": "read_all",
+      "roles": [
+        "5a3e4269ccc08c0009b8e1c9",
+        "5a3e4269ccc08c0009b8e1ca",
+        "5a3e4269ccc08c0009b8e1cb"
+      ]
+    }
+  ],
+  "tags": [
+    "common"
+  ],
+  "type": "form"
+}

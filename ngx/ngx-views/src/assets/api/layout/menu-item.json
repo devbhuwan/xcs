@@ -1,0 +1,14 @@
+[
+  {
+    "id": "Entity",
+    "link": "entity",
+    "icon": "fa-dashboard",
+    "label": "Entity"
+  },
+  {
+    "id": "Others",
+    "link": "others",
+    "icon": "fa fa-fw fa-dashboard",
+    "label": "Others"
+  }
+]

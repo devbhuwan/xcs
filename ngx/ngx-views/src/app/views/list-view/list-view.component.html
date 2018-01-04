@@ -1,0 +1,27 @@
+<xcs-view-container>
+  <xcs-widget-view [viewTitle]="viewTitle" class="table-responsive">
+    <ngx-datatable
+      style="height: 60vh"
+      class="table table-hover table-striped table-sm"
+      [columnMode]="'force'"
+      [headerHeight]="40"
+      [footerHeight]="45"
+      [rowHeight]="35"
+      [scrollbarV]="35"
+      [rows]="rows"
+      [cssClasses]="{
+            sortAscending: 'fa fa-sort-up',
+            sortDescending: 'fa fa-sort-down',
+            pagerLeftArrow: 'fa  fa-angle-left',
+            pagerRightArrow: 'fa fa-angle-right',
+            pagerPrevious: 'fa fa-angle-double-left',
+            pagerNext: 'fa fa-angle-double-right'
+          }">
+      <ngx-datatable-column *ngFor="let ngxColumn of ngxColumns"
+                            [name]="ngxColumn.name"
+                            [cellTemplate]="ngxColumn.cellTemplate">
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </xcs-widget-view>
+</xcs-view-container>
+<ng-content></ng-content>

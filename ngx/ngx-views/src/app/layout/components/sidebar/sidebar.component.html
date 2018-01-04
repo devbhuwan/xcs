@@ -1,0 +1,9 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+  <div class="list-group">
+    <a *ngFor="let menuItem of menuItems | async"
+       routerLink="{{menuItem.routerLink}}"
+       [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="{{menuItem.title.icon}}"></i>&nbsp;{{ menuItem.title.label | translate }}
+    </a>
+  </div>
+</nav>

@@ -1,0 +1,16 @@
+<xcs-view-container>
+  <xcs-widget-view [viewTitle]="viewTitle">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div *ngFor="let fKey of columnFirstKeys">
+          <xcs-item-cell [key]="fKey" [value]="entity[fKey]"></xcs-item-cell>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div *ngFor="let sKey of columnSecondKeys">
+          <xcs-item-cell [key]="sKey" [value]="entity[sKey]"></xcs-item-cell>
+        </div>
+      </div>
+    </div>
+  </xcs-widget-view>
+</xcs-view-container>

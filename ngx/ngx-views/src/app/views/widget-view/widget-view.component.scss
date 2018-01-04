@@ -1,0 +1,10 @@
+$xcs-widget-header-padding: 0.3rem 1.25rem;
+$xcs-widget-header-btn-padding: 0.2rem;
+
+.card-header {
+  padding: $xcs-widget-header-padding;
+}
+
+.card-header a.btn {
+  padding: $xcs-widget-header-btn-padding;
+}

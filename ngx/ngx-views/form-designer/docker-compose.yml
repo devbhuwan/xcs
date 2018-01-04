@@ -1,0 +1,17 @@
+version: '2'
+services:
+  mango:
+    image: mongo
+    container_name: "formIoDBMongo"
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
+  formio:
+    image: xcloudschool/formio
+    container_name: "formIoAPIPlatform"
+    ports:
+      - 3001:3001
+      - 8080:8080
+    depends_on:
+      - mango
