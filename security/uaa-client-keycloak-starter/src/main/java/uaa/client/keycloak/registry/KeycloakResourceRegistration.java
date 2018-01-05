@@ -5,19 +5,20 @@ import org.keycloak.authorization.client.AuthzClient;
 import org.keycloak.authorization.client.Configuration;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.util.Assert;
-import uaa.client.registry.HealthCheckHandler;
 import uaa.client.registry.Registration;
 
 @Slf4j
 public class KeycloakResourceRegistration implements Registration {
-    private final ObjectProvider<HealthCheckHandler> healthCheckHandler;
+    private final ObjectProvider<EndpointResourceFinder> resourceFinder;
     private final Configuration keycloakClientConfiguration;
     private AuthzClient authzClient;
     private String appName;
 
-    public KeycloakResourceRegistration(AuthzClient authzClient, ObjectProvider<HealthCheckHandler> healthCheckHandler, Configuration keycloakConfig) {
+    public KeycloakResourceRegistration(AuthzClient authzClient,
+                                        ObjectProvider<EndpointResourceFinder> resourceFinder,
+                                        Configuration keycloakConfig) {
+        this.resourceFinder = resourceFinder;
         this.authzClient = authzClient;
-        this.healthCheckHandler = healthCheckHandler;
         this.keycloakClientConfiguration = keycloakConfig;
     }
 
@@ -45,8 +46,8 @@ public class KeycloakResourceRegistration implements Registration {
         return this.appName;
     }
 
-    public ObjectProvider<HealthCheckHandler> getHealthCheckHandler() {
-        return healthCheckHandler;
+    public ObjectProvider<EndpointResourceFinder> getResourceFinder() {
+        return resourceFinder;
     }
 
     public void retryToBuildKeycloakClient() {
@@ -56,7 +57,7 @@ public class KeycloakResourceRegistration implements Registration {
     @Slf4j
     public static class Builder {
         private AuthzClient authzClient;
-        private ObjectProvider<HealthCheckHandler> healthCheckHandler;
+        private ObjectProvider<EndpointResourceFinder> resourceFinder;
         private Configuration keycloakConfig;
 
         public Builder with(AuthzClient authzClient) {
@@ -64,8 +65,8 @@ public class KeycloakResourceRegistration implements Registration {
             return this;
         }
 
-        public Builder with(ObjectProvider<HealthCheckHandler> healthCheckHandler) {
-            this.healthCheckHandler = healthCheckHandler;
+        public Builder with(ObjectProvider<EndpointResourceFinder> resourceFinder) {
+            this.resourceFinder = resourceFinder;
             return this;
         }
 
@@ -75,8 +76,7 @@ public class KeycloakResourceRegistration implements Registration {
         }
 
         public KeycloakResourceRegistration build() {
-            return new KeycloakResourceRegistration(buildAuthzClient(authzClient, this.keycloakConfig),
-                    healthCheckHandler, keycloakConfig);
+            return new KeycloakResourceRegistration(buildAuthzClient(this.authzClient, this.keycloakConfig), this.resourceFinder, this.keycloakConfig);
         }
 
     }

@@ -1,8 +1,6 @@
 package uaa.client.keycloak.registry;
 
 import lombok.extern.slf4j.Slf4j;
-import uaa.client.registry.HealthCheckHandler;
-import uaa.client.registry.InstanceStatus;
 import uaa.client.registry.ResourceRegistry;
 
 import java.io.Closeable;
@@ -17,18 +15,16 @@ public class KeycloakResourceRegistry implements ResourceRegistry<KeycloakResour
             log.info("Registering application " + reg.getAppName()
                     + " with keycloak");
         }
-        registerResources(reg.getHealthCheckHandler().getIfAvailable(), reg);
+        registerResources(reg.getResourceFinder().getIfAvailable(), reg);
     }
 
     private void maybeInitializeClient(KeycloakResourceRegistration reg) {
-        if(reg.getKeycloakClient() == null)
+        if (reg.getKeycloakClient() == null)
             reg.retryToBuildKeycloakClient();
     }
 
-    private void registerResources(HealthCheckHandler healthCheckHandler, KeycloakResourceRegistration reg) {
-        if (InstanceStatus.UP.equals(healthCheckHandler.getStatus(null))) {
+    private void registerResources(EndpointResourceFinder endpointResourceFinder, KeycloakResourceRegistration reg) {
 
-        }
     }
 
     @Override
