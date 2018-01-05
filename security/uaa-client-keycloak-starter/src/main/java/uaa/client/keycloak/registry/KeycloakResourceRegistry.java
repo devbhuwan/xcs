@@ -1,6 +1,7 @@
 package uaa.client.keycloak.registry;
 
 import lombok.extern.slf4j.Slf4j;
+import org.keycloak.authorization.client.resource.ProtectionResource;
 import org.springframework.retry.RetryCallback;
 import uaa.client.registry.ResourceRegistry;
 
@@ -20,23 +21,31 @@ public class KeycloakResourceRegistry implements ResourceRegistry<KeycloakResour
     }
 
     private void maybeInitializeClient(KeycloakResourceRegistration reg) {
-        if (reg.getKeycloakClient() == null)
+        if (reg.getAuthzClient() == null)
             reg.retryToBuildKeycloakClient();
     }
 
     private void registerResources(final EndpointResourceFinder endpointResourceFinder, final KeycloakResourceRegistration reg) {
-        reg.getRetryTemplate().execute((RetryCallback<Void, ResourceRegistrationException>) context -> {
-            log.info("calling retry callback");
-            if (reg.getKeycloakClient() != null) {
-                endpointResourceFinder.findAll().forEach(s -> {
+        reg.getAsyncTaskExecutor().execute(() -> {
+            reg.getRetryTemplate().execute((RetryCallback<Void, ResourceRegistrationException>) context -> {
+                log.info("[Retry] To register resources of application " + reg.getAppName() + " with keycloak retry callback");
+                try {
 
-                });
-            } else
+                    ProtectionResource protectionResource = reg.getAuthzClient().protection();
+                    endpointResourceFinder.findAll().forEach(s -> {
+
+                    });
+                    log.info("Successfully registered resources of application " + reg.getAppName() + " with keycloak");
+                    return null;
+                } catch (Exception ex) {
+                    throw new ResourceRegistrationException("Unable to register resources of application "
+                            + reg.getAppName() + " with keycloak", ex);
+                }
+            }, context -> {
+                log.info("calling recovery callback");
                 maybeInitializeClient(reg);
-            return null;
-        }, context -> {
-            log.info("calling recovery callback");
-            return null;
+                return null;
+            });
         });
     }
 

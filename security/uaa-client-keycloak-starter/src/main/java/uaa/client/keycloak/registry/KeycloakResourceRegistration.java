@@ -1,29 +1,41 @@
 package uaa.client.keycloak.registry;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.keycloak.authorization.client.AuthzClient;
 import org.keycloak.authorization.client.Configuration;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.retry.support.RetryTemplate;
 import org.springframework.util.Assert;
 import uaa.client.registry.Registration;
 
 @Slf4j
 public class KeycloakResourceRegistration implements Registration {
+    @Getter
     private final ObjectProvider<EndpointResourceFinder> resourceFinder;
     private final Configuration keycloakClientConfiguration;
+    @Getter
     private AuthzClient authzClient;
+    @Getter
     private String appName;
+    @Getter
     private RetryTemplate retryTemplate;
+    @Getter
+    private AsyncTaskExecutor asyncTaskExecutor;
 
     public KeycloakResourceRegistration(AuthzClient authzClient,
                                         ObjectProvider<EndpointResourceFinder> resourceFinder,
                                         Configuration keycloakConfig,
-                                        RetryTemplate retryTemplate) {
+                                        RetryTemplate retryTemplate,
+                                        String appName,
+                                        AsyncTaskExecutor asyncTaskExecutor) {
         this.resourceFinder = resourceFinder;
         this.authzClient = authzClient;
         this.keycloakClientConfiguration = keycloakConfig;
         this.retryTemplate = retryTemplate;
+        this.appName = appName;
+        this.asyncTaskExecutor = asyncTaskExecutor;
     }
 
     public static Builder builder() {
@@ -42,22 +54,6 @@ public class KeycloakResourceRegistration implements Registration {
         return authzClient;
     }
 
-    public AuthzClient getKeycloakClient() {
-        return authzClient;
-    }
-
-    public String getAppName() {
-        return this.appName;
-    }
-
-    public ObjectProvider<EndpointResourceFinder> getResourceFinder() {
-        return resourceFinder;
-    }
-
-    public RetryTemplate getRetryTemplate() {
-        return retryTemplate;
-    }
-
     public void retryToBuildKeycloakClient() {
         this.authzClient = buildAuthzClient(authzClient, keycloakClientConfiguration);
     }
@@ -68,6 +64,8 @@ public class KeycloakResourceRegistration implements Registration {
         private ObjectProvider<EndpointResourceFinder> resourceFinder;
         private Configuration keycloakConfig;
         private RetryTemplate retryTemplate;
+        private String appName;
+        private AsyncTaskExecutor asyncTaskExecutor;
 
         public Builder with(AuthzClient authzClient) {
             this.authzClient = authzClient;
@@ -89,9 +87,23 @@ public class KeycloakResourceRegistration implements Registration {
             return this;
         }
 
+
+        public Builder with(AsyncTaskExecutor asyncTaskExecutor) {
+            this.asyncTaskExecutor = asyncTaskExecutor;
+            return this;
+        }
+
+        public Builder with(String appName) {
+            this.appName = appName;
+            return this;
+        }
+
         public KeycloakResourceRegistration build() {
-            return new KeycloakResourceRegistration(buildAuthzClient(this.authzClient, this.keycloakConfig),
-                    this.resourceFinder, this.keycloakConfig, this.retryTemplate);
+            return new KeycloakResourceRegistration(
+                    buildAuthzClient(this.authzClient, this.keycloakConfig),
+                    this.resourceFinder, this.keycloakConfig,
+                    this.retryTemplate,
+                    this.appName, this.asyncTaskExecutor);
         }
 
     }

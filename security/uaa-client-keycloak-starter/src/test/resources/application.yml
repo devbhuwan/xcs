@@ -12,3 +12,6 @@ xcs:
         resource:
           auto-registry:
             enabled: true
+spring:
+  application:
+    name: UAA-CLIENT-KEYCLOAK-STARTER
