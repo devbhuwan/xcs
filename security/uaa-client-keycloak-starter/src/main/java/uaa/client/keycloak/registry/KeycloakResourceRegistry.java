@@ -12,11 +12,17 @@ public class KeycloakResourceRegistry implements ResourceRegistry<KeycloakResour
 
     @Override
     public void register(KeycloakResourceRegistration reg) {
+        maybeInitializeClient(reg);
         if (log.isInfoEnabled()) {
             log.info("Registering application " + reg.getAppName()
                     + " with keycloak");
         }
         registerResources(reg.getHealthCheckHandler().getIfAvailable(), reg);
+    }
+
+    private void maybeInitializeClient(KeycloakResourceRegistration reg) {
+        if(reg.getKeycloakClient() == null)
+            reg.retryToBuildKeycloakClient();
     }
 
     private void registerResources(HealthCheckHandler healthCheckHandler, KeycloakResourceRegistration reg) {

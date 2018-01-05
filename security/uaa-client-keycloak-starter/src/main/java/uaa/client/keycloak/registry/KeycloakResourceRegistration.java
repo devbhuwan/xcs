@@ -8,18 +8,33 @@ import org.springframework.util.Assert;
 import uaa.client.registry.HealthCheckHandler;
 import uaa.client.registry.Registration;
 
+@Slf4j
 public class KeycloakResourceRegistration implements Registration {
-    private final AuthzClient authzClient;
     private final ObjectProvider<HealthCheckHandler> healthCheckHandler;
+    private final Configuration keycloakClientConfiguration;
+    private AuthzClient authzClient;
     private String appName;
 
-    public KeycloakResourceRegistration(AuthzClient authzClient, ObjectProvider<HealthCheckHandler> healthCheckHandler) {
+    public KeycloakResourceRegistration(AuthzClient authzClient, ObjectProvider<HealthCheckHandler> healthCheckHandler, Configuration keycloakConfig) {
         this.authzClient = authzClient;
         this.healthCheckHandler = healthCheckHandler;
+        this.keycloakClientConfiguration = keycloakConfig;
     }
 
     public static Builder builder() {
         return new Builder();
+    }
+
+    private static AuthzClient buildAuthzClient(AuthzClient authzClient, Configuration keycloakConfig) {
+        if (authzClient == null) {
+            Assert.notNull(keycloakConfig, "if authzClient is null, [" + Configuration.class.getName() + "] may not be null");
+            try {
+                return AuthzClient.create(keycloakConfig);
+            } catch (Exception ex) {
+                log.warn("Unable to create keycloak authz client [{}]", ex.getMessage());
+            }
+        }
+        return authzClient;
     }
 
     public AuthzClient getKeycloakClient() {
@@ -32,6 +47,10 @@ public class KeycloakResourceRegistration implements Registration {
 
     public ObjectProvider<HealthCheckHandler> getHealthCheckHandler() {
         return healthCheckHandler;
+    }
+
+    public void retryToBuildKeycloakClient() {
+        this.authzClient = buildAuthzClient(authzClient, keycloakClientConfiguration);
     }
 
     @Slf4j
@@ -56,15 +75,8 @@ public class KeycloakResourceRegistration implements Registration {
         }
 
         public KeycloakResourceRegistration build() {
-            if (this.authzClient == null) {
-                Assert.notNull(this.keycloakConfig, "if authzClient is null, [" + Configuration.class.getName() + "] may not be null");
-                try {
-                    this.authzClient = AuthzClient.create(keycloakConfig);
-                } catch (Exception ex) {
-                    log.warn(ex.getMessage());
-                }
-            }
-            return new KeycloakResourceRegistration(authzClient, healthCheckHandler);
+            return new KeycloakResourceRegistration(buildAuthzClient(authzClient, this.keycloakConfig),
+                    healthCheckHandler, keycloakConfig);
         }
 
     }
