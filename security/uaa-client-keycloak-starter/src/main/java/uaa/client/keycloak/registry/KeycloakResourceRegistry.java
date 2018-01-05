@@ -42,7 +42,7 @@ public class KeycloakResourceRegistry implements ResourceRegistry<KeycloakResour
                             + reg.getAppName() + " with keycloak", ex);
                 }
             }, context -> {
-                log.info("calling recovery callback");
+                log.info("[Retry] To connect with keycloak for authzClient");
                 maybeInitializeClient(reg);
                 return null;
             });
