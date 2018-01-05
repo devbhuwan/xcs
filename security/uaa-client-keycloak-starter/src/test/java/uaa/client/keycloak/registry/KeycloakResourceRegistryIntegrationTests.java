@@ -17,6 +17,5 @@ public class KeycloakResourceRegistryIntegrationTests extends AbstractUaaKeycloa
     @Test
     public void givenEndpoints_whenRegister_thenRetryTillKeycloakAuthServerNotAvailable() throws InterruptedException {
         when(endpointResourceFinder.findAll()).thenReturn(Arrays.asList("foo", "bar"));
-        TimeUnit.MINUTES.sleep(1);
     }
 }
