@@ -8,8 +8,11 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import uaa.RootPackage;
 import uaa.keycloak.security.KeycloakServerProperties;
 
+@ComponentScan(basePackageClasses = RootPackage.class)
 @SpringBootApplication(exclude = LiquibaseAutoConfiguration.class)
 @EnableConfigurationProperties(KeycloakServerProperties.class)
 public class UaaKeycloakServiceApplication {

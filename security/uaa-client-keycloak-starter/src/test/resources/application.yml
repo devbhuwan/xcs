@@ -1,3 +1,14 @@
-keycloak:
-  auth-server-url: ${KEYCLOAK_AUTH_SERVER_URL:http://localhost:8080/auth}
-  security-constraints:
+logging:
+  level: info
+
+xcs:
+  uaa:
+    client:
+      keycloak:
+        auth-server-url: http://localhost:8080/auth
+        client: uaa-client-keycloak
+        realm: uaa-client
+        client-secret: uaa-client
+        resource:
+          auto-registry:
+            enabled: true
