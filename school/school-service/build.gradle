@@ -1,0 +1,10 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-webflux")
+    compile("org.springframework.data:spring-data-mongodb")
+    compile("org.mongodb:mongodb-driver-reactivestreams")
+    compile("com.h2database:h2")
+    testCompile("io.projectreactor.addons:reactor-test:${reactorTestVersion}")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
