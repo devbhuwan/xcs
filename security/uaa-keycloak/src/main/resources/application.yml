@@ -26,16 +26,6 @@ spring:
     password: ${cloud.services.mysql.connection.password}
     url: ${cloud.services.mysql.connection.jdbcUrl}
     driver-class-name: com.mysql.jdbc.Driver
-#    hikari:
-#      pool-name: SpringBootHikariCP
-#      maximum-pool-size: 20
-#      minimum-idle: 3
-#      max-lifetime: 2000000
-#      connection-timeout: 30000
-#      idle-timeout: 30000
-#      allow-pool-suspension: true
-#    type: com.zaxxer.hikari.HikariDataSource
-
 keycloak:
   server:
     connections-jpa-driver: com.mysql.jdbc.Driver
