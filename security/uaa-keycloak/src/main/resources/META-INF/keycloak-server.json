@@ -59,9 +59,9 @@
     "default": {
       "dataSource": "spring/datasource",
       "url": "${spring.datasource.url:}",
-      "driver": "${keycloak.connectionsJpa.driver:}",
+      "driver": "${keycloak.connectionsJpa.driver:org.h2.Driver}",
       "driverDialect": "${keycloak.connectionsJpa.driverDialect:}",
-      "user": "${spring.datasource.username:}",
+      "user": "${spring.datasource.username:sa}",
       "password": "${spring.datasource.password:}",
       "initializeEmpty": true,
       "migrationStrategy": "update",
