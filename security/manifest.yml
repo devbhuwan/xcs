@@ -6,12 +6,5 @@ applications:
   instances: 1
   buildpack: java_buildpack
   stack: cflinuxfs2
-#  env:
-#      SPRING_DATASOURCE_USERNAME: ${cloud.services.mysql.connection.username}
-#      SPRING_DATASOURCE_PASSWORD: ${cloud.services.mysql.connection.password}
-#      SPRING_DATASOURCE_URL: ${cloud.services.mysql.connection.jdbcUrl}
-#      SPRING_DATASOURCE_DRIVERCLASSNAME: com.mysql.jdbc.Driver
-#      KEYCLOAK_SERVER_CONNECTIONSJPADRIVER: com.mysql.jdbc.Driver
-#      KEYCLOAK_SERVER_CONNECTIONSJPADRIVERDIALECT: org.hibernate.dialect.MySQLDialect
   services:
   - mysql
