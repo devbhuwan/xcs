@@ -20,13 +20,13 @@ import java.util.Optional;
 class EmbeddedKeycloakConfig {
 
     @Bean
-    ServletRegistrationBean keycloakJaxRsApplication(KeycloakServerProperties keycloakServerProperties, DataSource dataSource) throws Exception {
+    ServletRegistrationBean keycloakJaxRsApplication(KeycloakServerProperties keycloakServerProperties, @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection") DataSource dataSource) throws Exception {
 
         mockJndiEnvironment(dataSource);
-
         //FIXME: hack to propagate Spring Boot Properties to Keycloak Application
         EmbeddedKeycloakApplication.keycloakServerProperties = keycloakServerProperties;
         enableImportRealms(keycloakServerProperties);
+        enableJpaVendorIfAvaliable(keycloakServerProperties);
         ServletRegistrationBean servlet = new ServletRegistrationBean(new HttpServlet30Dispatcher());
         servlet.addInitParameter("javax.ws.rs.Application", EmbeddedKeycloakApplication.class.getName());
         servlet.addInitParameter(ResteasyContextParameters.RESTEASY_SERVLET_MAPPING_PREFIX, keycloakServerProperties.getContextPath());
@@ -36,6 +36,13 @@ class EmbeddedKeycloakConfig {
         servlet.setAsyncSupported(true);
 
         return servlet;
+    }
+
+    private void enableJpaVendorIfAvaliable(KeycloakServerProperties keycloakServerProperties) {
+        if (StringUtils.isNotBlank(keycloakServerProperties.getConnectionsJpaDriver()) && StringUtils.isNotBlank(keycloakServerProperties.getConnectionsJpaDriverDialect())) {
+            System.setProperty("keycloak.connectionsJpa.driver", keycloakServerProperties.getConnectionsJpaDriver());
+            System.setProperty("keycloak.connectionsJpa.driverDialect", keycloakServerProperties.getConnectionsJpaDriverDialect());
+        }
     }
 
     private void enableImportRealms(KeycloakServerProperties keycloakServerProperties) {

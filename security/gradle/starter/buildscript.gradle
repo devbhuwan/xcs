@@ -5,4 +5,5 @@ dependencies {
     classpath("org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.16")
     classpath("org.asciidoctor:asciidoctorj-epub3:1.5.0-alpha.7")
     classpath "net.ltgt.gradle:gradle-apt-plugin:0.13"
+    classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
 }

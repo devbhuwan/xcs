@@ -12,6 +12,8 @@ public class KeycloakServerProperties {
     private String contextPath = "/auth";
     private AdminUser adminUser = new AdminUser();
     private String importRealms;
+    private String connectionsJpaDriver;
+    private String connectionsJpaDriverDialect;
 
     @Getter
     @Setter
