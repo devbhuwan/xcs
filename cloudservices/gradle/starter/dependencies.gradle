@@ -5,8 +5,8 @@ dependencies {
     testCompile("org.assertj:assertj-core")
     testCompile("org.powermock:powermock-api-easymock:${easyPowerMockVersion}")
     testCompile("org.powermock:powermock-module-junit4:${easyPowerMockVersion}")
-    compile("org.springframework.cloud:spring-cloud-spring-service-connector")
-    compile("org.springframework.cloud:spring-cloud-cloudfoundry-connector")
+    compile("org.springframework.cloud:spring-cloud-spring-service-connector:${springCloudServicesVersion}")
+    compile("org.springframework.cloud:spring-cloud-cloudfoundry-connector:${springCloudServicesVersion}")
     compile("org.springframework.cloud:spring-cloud-commons")
     compile("org.springframework.boot:spring-boot-starter-test")
 

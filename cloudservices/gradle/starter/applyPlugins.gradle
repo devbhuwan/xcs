@@ -4,7 +4,6 @@ apply plugin: 'jacoco'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'org.asciidoctor.convert'
 apply plugin: "net.ltgt.apt"
-apply plugin: 'org.springframework.boot'
 sourceCompatibility = 1.8
 
 

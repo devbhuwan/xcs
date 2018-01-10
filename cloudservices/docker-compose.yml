@@ -1,8 +1,6 @@
 version: '2'
 services:
-  service-registry:
-    image: io.github.devbhuwan/service-registry
   config-provider:
     image: io.github.devbhuwan/config-provider
-    depends_on:
-      - service-registry
+  service-registry:
+    image: io.github.devbhuwan/service-registry
