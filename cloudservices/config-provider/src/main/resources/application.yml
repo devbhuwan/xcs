@@ -1,9 +1,6 @@
 server:
   port: 8888
 
-management:
-  context-path: /admin
-
 logging:
   level:
     com.netflix.discovery: 'OFF'
@@ -12,8 +9,8 @@ logging:
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10
-    statusPageUrlPath: /admin/info
-    healthCheckUrlPath: /admin/health
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
 
 spring:
   cloud:
