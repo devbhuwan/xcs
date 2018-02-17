@@ -1,0 +1,6 @@
+version: '2'
+services:
+  config-provider:
+    image: io.github.devbhuwan/config-provider
+  service-registry:
+    image: io.github.devbhuwan/service-registry

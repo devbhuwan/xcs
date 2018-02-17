@@ -1,0 +1,4 @@
+rootProject.name = 'cloudservices'
+include 'service-registry'
+include 'config-provider'
+
